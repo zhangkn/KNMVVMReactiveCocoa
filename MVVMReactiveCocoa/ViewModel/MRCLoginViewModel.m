@@ -25,20 +25,23 @@
 
 - (void)initialize {
     [super initialize];
-    
+    //1、当用户输入的用户名发生变化时，调用 model 层的方法查询本地数据库中缓存的用户数据，并返回 avatarURL 属性;
     RAC(self, avatarURL) = [[RACObserve(self, username)
         map:^(NSString *username) {
             return [[OCTUser mrc_fetchUserWithRawLogin:username] avatarURL];
         }]
-        distinctUntilChanged];
-    
+        distinctUntilChanged];// distinctUntilChanged  如果当前的值跟上一次的值一样,就不会被订阅到
+    //2、用户输入的用户名或密码发生变化时，判断用户名和密码的长度是否均大于 0 ，如果是则登录按钮可用，否则不可用;
     self.validLoginSignal = [[RACSignal
     	combineLatest:@[ RACObserve(self, username), RACObserve(self, password) ]
         reduce:^(NSString *username, NSString *password) {
         	return @(username.length > 0 && password.length > 0);
         }]
         distinctUntilChanged];
-    
+    /**
+     3、
+     当 loginCommand 或 browserLoginCommand 命令执行成功时，调用 doNext 代码块，使用服务总线中的方法 resetRootViewModel: 进入首页
+     */
     @weakify(self)
     void (^doNext)(OCTClient *) = ^(OCTClient *authenticatedClient) {
         @strongify(self)

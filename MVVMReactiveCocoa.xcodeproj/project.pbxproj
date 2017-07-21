@@ -65,7 +65,7 @@
 		242453251A80D86300FFFCC1 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 242452FE1A80D79E00FFFCC1 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		242453281A80D86E00FFFCC1 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2424530D1A80D7AC00FFFCC1 /* Mantle.framework */; };
 		242453291A80D86E00FFFCC1 /* Mantle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2424530D1A80D7AC00FFFCC1 /* Mantle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2424532C1A80D87300FFFCC1 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531A1A80D81700FFFCC1 /* AFNetworking.framework */; };
+		2424532C1A80D87300FFFCC1 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531A1A80D81700FFFCC1 /* AFNetworking.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		2424532D1A80D87300FFFCC1 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531A1A80D81700FFFCC1 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		242453301A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531E1A80D81700FFFCC1 /* ISO8601DateFormatter.framework */; };
 		242453311A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531E1A80D81700FFFCC1 /* ISO8601DateFormatter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };

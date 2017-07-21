@@ -126,6 +126,8 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+            <key>NSAllowsArbitraryLoads</key>
+            <true/>
 			<key>7xkfnf.com1.z0.glb.clouddn.com</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>

@@ -74,13 +74,14 @@
 
 - (void)bindViewModel {
     [super bindViewModel];
+    //1\观察 viewModel 中 avatarURL 属性的变化，然后设置 avatarButton 中的图片；
 
 	@weakify(self)
     [RACObserve(self.viewModel, avatarURL) subscribeNext:^(NSURL *avatarURL) {
     	@strongify(self)
         [self.avatarButton sd_setImageWithURL:avatarURL forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"default-avatar"]];
     }];
-
+//监听avatarButton 的点击事件
     [[self.avatarButton
         rac_signalForControlEvents:UIControlEventTouchUpInside]
         subscribeNext:^(UIButton *avatarButton) {
@@ -94,7 +95,7 @@
 
             [self presentViewController:viewController animated:YES completion:NULL];
         }];
-
+//将 viewModel 中的 username 和 password 属性分别与 usernameTextField 和 passwordTextField 输入框中的内容进行绑定；
     RAC(self.viewModel, username) = self.usernameTextField.rac_textSignal;
     RAC(self.viewModel, password) = self.passwordTextField.rac_textSignal;
 
@@ -112,7 +113,7 @@
                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             }
         }];
-
+//使用 RACSubject 可以非常方便地实现统一的错误处理逻辑。
     [[RACSignal
         merge:@[ self.viewModel.loginCommand.errors, self.viewModel.exchangeTokenCommand.errors ]]
         subscribeNext:^(NSError *error) {
@@ -141,11 +142,12 @@
 
                 [self presentViewController:alertController animated:YES completion:NULL];
             } else {
-                MRCError(error.localizedDescription);
+                MRCError(error.localizedDescription);//NSLocalizedDescription UserInfo={NSLocalizedDescription=似乎已断开与互联网的连接。
             }
         }];
-
+//3、 validLoginSignal 属性代表的是登录按钮是否可用，它将会与 view 中登录按钮的 enabled 属性进行绑定
     RAC(self.loginButton, enabled) = self.viewModel.validLoginSignal;
+//4、    在 loginButton 和 browserLoginButton 按钮被点击时分别执行 loginCommand 和 browserLoginCommand 命令。
 
     [[self.loginButton
         rac_signalForControlEvents:UIControlEventTouchUpInside]
